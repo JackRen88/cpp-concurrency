@@ -20,14 +20,27 @@ int main() {
   vector<double> collection;
   generateRandomData(collection, 10e6);
 
+  /*   std::cout << "collection: ";
+    for (auto &data : collection)
+    {
+      std::cout << data << " ";
+    }
+    std::cout << std::endl; */
+  vector<double> copy0(collection);
   vector<double> copy1(collection);
   vector<double> copy2(collection);
   vector<double> copy3(collection);
 
+  auto time_0 = chrono::steady_clock::now();
+  sort(copy0.begin(), copy0.end());
+  auto time_1 = chrono::steady_clock::now();
+  auto duration = chrono::duration_cast<chrono::milliseconds>(time_1 - time_0).count();
+  cout << "sort consuming " << duration << "ms." << endl;
+
   auto time1 = chrono::steady_clock::now();
   sort(execution::seq, copy1.begin(), copy1.end());
   auto time2 = chrono::steady_clock::now();
-  auto duration = chrono::duration_cast<chrono::milliseconds>(time2 - time1).count();
+  duration = chrono::duration_cast<chrono::milliseconds>(time2 - time1).count();
   cout << "Sequenced sort consuming " << duration << "ms." << endl;
 
   auto time3 = chrono::steady_clock::now();
@@ -37,7 +50,7 @@ int main() {
   cout << "Parallel sort consuming " << duration << "ms." << endl;
 
   auto time5 = chrono::steady_clock::now();
-  sort(execution::par_unseq, copy2.begin(),copy2.end());
+  sort(execution::par_unseq, copy3.begin(), copy3.end());
   auto time6 = chrono::steady_clock::now();
   duration = chrono::duration_cast<chrono::milliseconds>(time6 - time5).count();
   cout << "Parallel unsequenced sort consuming " << duration << "ms." << endl;
