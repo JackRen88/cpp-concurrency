@@ -13,6 +13,7 @@ double concurrent_worker(int min, int max) {
   for (int i = min; i <= max; i++) {
     sum += sqrt(i);
   }
+  std::cout << "thread id: " << this_thread::get_id() << "Done!" << std::endl;
   return sum;
 }
 
@@ -36,6 +37,7 @@ double concurrent_task(int min, int max) {
   double sum = 0;
   for (auto& r : results) {
     sum += r.get();
+    std::cout << "one thread compute result" << std::endl;
   }
   return sum;
 }

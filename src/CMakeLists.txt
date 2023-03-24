@@ -21,6 +21,9 @@ add_executable(bank_transfer_wait_notify  11_bank_transfer_wait_notify.cpp)
 add_executable(async_task                 12_async_task.cpp)
 add_executable(packaged_task              13_packaged_task.cpp)
 add_executable(promise_future             14_promise_future.cpp)
+add_executable(sequential_consistency     16_sequential_consistency.cpp)
+add_executable(acquire_release            17_acquire_release.cpp)
+add_executable(relaxed                    18_relaxed.cpp)
 
 # For OS X
 if(APPLE)
@@ -53,5 +56,8 @@ IF("${CMAKE_SYSTEM}" MATCHES "Linux")
   target_link_libraries(async_task                  pthread)
   target_link_libraries(packaged_task               pthread)
   target_link_libraries(promise_future              pthread)
+  target_link_libraries(sequential_consistency      pthread)
+  target_link_libraries(acquire_release             pthread)
+  target_link_libraries(relaxed                     pthread)
 endif()
 
