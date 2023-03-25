@@ -24,6 +24,8 @@ add_executable(promise_future             14_promise_future.cpp)
 add_executable(sequential_consistency     16_sequential_consistency.cpp)
 add_executable(acquire_release            17_acquire_release.cpp)
 add_executable(relaxed                    18_relaxed.cpp)
+add_executable(seq_cst_relaxed            19_seq_cst_relaxed.cpp)
+add_executable(fence_relaxed              20_fence_relaxed.cpp)
 
 # For OS X
 if(APPLE)
@@ -59,5 +61,7 @@ IF("${CMAKE_SYSTEM}" MATCHES "Linux")
   target_link_libraries(sequential_consistency      pthread)
   target_link_libraries(acquire_release             pthread)
   target_link_libraries(relaxed                     pthread)
+  target_link_libraries(seq_cst_relaxed             pthread)
+  target_link_libraries(fence_relaxed               pthread)
 endif()
 
